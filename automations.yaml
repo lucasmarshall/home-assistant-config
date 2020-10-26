@@ -1,0 +1,39 @@
+- id: '1603653106673'
+  alias: Turn on the lights when I arrive home after sunset
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.lucas_marshall
+    zone: zone.home
+    event: enter
+  - platform: zone
+    entity_id: person.luke_powell
+    zone: zone.home
+    event: enter
+  condition:
+  - condition: sun
+    after: sunset
+    before: sunrise
+    after_offset: -01:00
+  action:
+  - domain: light
+    entity_id: light.right_living_room_bulb_1
+    device_id: ece06809569f40159cd385449c0779ef
+    type: turn_on
+  - domain: light
+    entity_id: light.right_living_room_bulb_2
+    device_id: 53c723f98b4243f4ac7d3220eaecdd38
+    type: turn_on
+  - domain: light
+    entity_id: light.left_living_room_bulb_1
+    device_id: 56b5f81ffd7543f8809efd4698cb30f1
+    type: turn_on
+  - domain: light
+    entity_id: light.left_living_room_bulb_2
+    device_id: 9ec601eff5304d96a7532b2ac821cb37
+    type: turn_on
+  - domain: light
+    entity_id: light.living_room_spot_lights
+    device_id: 2c215c5200394cb3b8a13b86768f6b05
+    type: turn_on
+  mode: single

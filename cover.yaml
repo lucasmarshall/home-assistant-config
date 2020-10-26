@@ -1,0 +1,8 @@
+- platform: group
+  name: Office Shades
+  entities:
+    - cover.office_center_shade
+    - cover.office_center_right_shade
+    - cover.office_center_left_shade
+    - cover.office_right_shade
+    - cover.office_left_shade

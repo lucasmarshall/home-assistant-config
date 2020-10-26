@@ -1,0 +1,36 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+lutron_caseta:
+  host: 192.168.1.46
+  keyfile: /ssl/lutron/caseta.key
+  certfile: /ssl/lutron/caseta.crt
+  ca_certs: /ssl/lutron/caseta-bridge.crt
+
+influxdb: !include influxdb.yaml
+
+netatmo:
+  client_id: !secret netatmo_client_id
+  client_secret: !secret netatmo_client_secret
+
+discovery:
+
+synology_dsm:
+  - host: !secret synology_dsm_host
+    username: homeassistant
+    password: !secret synology_dsm_secret
+
+pi_hole:
+  - host: pi-hole.local
+
+cover: !include cover.yaml

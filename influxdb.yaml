@@ -1,0 +1,6 @@
+host: 192.168.1.40
+username: homeassistant
+password: !secret influxdb_password
+database: homeassistant
+tags_attributes:
+  - friendly_name
