@@ -34,3 +34,8 @@ pi_hole:
   - host: pi-hole.local
 
 cover: !include cover.yaml
+
+homeassistant:
+  customize: !include customize.yaml
+  
+light: !include light.yaml

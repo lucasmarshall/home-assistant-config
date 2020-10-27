@@ -1,0 +1,7 @@
+- platform: group
+  name: Living Room Lamps
+  entities:
+    - light.right_living_room_bulb_1
+    - light.right_living_room_bulb_2
+    - light.left_living_room_bulb_1
+    - light.left_living_room_bulb_2

@@ -6,3 +6,25 @@
     - cover.office_center_left_shade
     - cover.office_right_shade
     - cover.office_left_shade
+
+- platform: group
+  name: Living Room Shades
+  entities:
+    - cover.living_room_left_shade
+    - cover.living_room_center_shade
+    - cover.living_room_right_shade
+
+- platform: group
+  name: Bedroom Shades
+  entities:
+    - cover.bedroom_main_shade
+    - cover.bedroom_right_door_shade
+    - cover.bedroom_left_door_shade
+    - cover.bedroom_upper_shade
+
+- platform: group
+  name: Guest Room Shades
+  entities:
+    - cover.guest_room_left_shade
+    - cover.guest_room_center_shade
+    - cover.guest_room_right_shade

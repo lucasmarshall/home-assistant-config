@@ -37,3 +37,47 @@
     device_id: 2c215c5200394cb3b8a13b86768f6b05
     type: turn_on
   mode: single
+- id: '1603763191515'
+  alias: Turn the light on when motion is detected
+  description: ''
+  trigger:
+  - platform: device
+    domain: binary_sensor
+    entity_id: binary_sensor.garage_motion
+    device_id: c9443899174e479397296f879acddce4
+    type: motion
+  condition: []
+  action:
+  - domain: light
+    entity_id: light.laundry
+    device_id: 185281db17f211eba23bc5fb9e1831a5
+    type: turn_on
+  - type: turn_on
+    device_id: 0004d76603b248718265167c2941461c
+    entity_id: switch.garage_main_lights
+    domain: switch
+  mode: single
+- id: '1603763328220'
+  alias: Turn the light off when motion is not detected
+  description: ''
+  trigger:
+  - platform: device
+    domain: binary_sensor
+    entity_id: binary_sensor.garage_motion
+    device_id: c9443899174e479397296f879acddce4
+    type: no_motion
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - domain: light
+    entity_id: light.laundry
+    device_id: 185281db17f211eba23bc5fb9e1831a5
+    type: turn_off
+  - type: turn_off
+    device_id: 0004d76603b248718265167c2941461c
+    entity_id: switch.garage_main_lights
+    domain: switch
+  mode: single
