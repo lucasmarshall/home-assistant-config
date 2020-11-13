@@ -5,3 +5,7 @@
     - light.right_living_room_bulb_2
     - light.left_living_room_bulb_1
     - light.left_living_room_bulb_2
+- platform: nanoleaf
+  name: Shapes
+  host: 192.168.1.68
+  token: !secret nanoleaf_client_token
