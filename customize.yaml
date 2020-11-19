@@ -1,2 +1,6 @@
 cover.office_shades:
   device_class: shade
+climate.hallway:
+  friendly_name: Upstairs
+climate.entryway:
+  friendly_name: Downstairs
