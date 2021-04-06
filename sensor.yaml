@@ -1,0 +1,6 @@
+  - platform: peloton
+    username: norcaldude
+    password: !secret lucas_peloton_password
+  - platform: peloton
+    username: luckylamour
+    password: !secret luke_peloton_password

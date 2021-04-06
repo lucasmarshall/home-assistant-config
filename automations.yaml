@@ -16,29 +16,49 @@
     before: sunrise
     after_offset: -01:00
   action:
-  - domain: light
-    entity_id: light.right_living_room_bulb_1
-    device_id: ece06809569f40159cd385449c0779ef
-    type: turn_on
-  - domain: light
-    entity_id: light.right_living_room_bulb_2
-    device_id: 53c723f98b4243f4ac7d3220eaecdd38
-    type: turn_on
-  - domain: light
+  - type: turn_on
+    device_id: 1850af5217f211eb893d770c04a16c14
     entity_id: light.left_living_room_bulb_1
-    device_id: 56b5f81ffd7543f8809efd4698cb30f1
-    type: turn_on
-  - domain: light
-    entity_id: light.left_living_room_bulb_2
-    device_id: 9ec601eff5304d96a7532b2ac821cb37
-    type: turn_on
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: a6d63cb5f1ec4a95bc1ed0acac27d185
+    entity_id: light.kitchen_main_lights
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: ca4ec705ed394f5aa8d6141a4e1affcb
+    entity_id: light.dining_room_table_lights
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: b10d43c0038d5438b9497952acd5be20
+    entity_id: light.dining_room_spot_lights
+    domain: light
+    brightness_pct: 100
   - domain: light
     entity_id: light.living_room_spot_lights
     device_id: 2c215c5200394cb3b8a13b86768f6b05
     type: turn_on
+    brightness_pct: 100
+  - type: turn_on
+    device_id: 185147d217f211ebaa13896b917a1900
+    entity_id: light.left_living_room_bulb_2
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: 184ea08317f211eb9e8e715560c1b3b9
+    entity_id: light.right_living_room_bulb_1
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: 184f408917f211eb84ab158d91705197
+    entity_id: light.right_living_room_bulb_2
+    domain: light
+    brightness_pct: 100
   mode: single
 - id: '1603763191515'
-  alias: Turn the light on when motion is detected
+  alias: Turn the garage lights on when motion is detected
   description: ''
   trigger:
   - platform: device
@@ -46,6 +66,11 @@
     entity_id: binary_sensor.garage_motion
     device_id: c9443899174e479397296f879acddce4
     type: motion
+  - type: motion
+    platform: device
+    device_id: 258e852d4a0883ebf55cf9604505201f
+    entity_id: binary_sensor.garage_motion_detector
+    domain: binary_sensor
   condition: []
   action:
   - domain: light
@@ -58,7 +83,7 @@
     domain: switch
   mode: single
 - id: '1603763328220'
-  alias: Turn the light off when motion is not detected
+  alias: Turn the garage lights off when motion is not detected
   description: ''
   trigger:
   - platform: device
@@ -70,7 +95,25 @@
       hours: 0
       minutes: 5
       seconds: 0
-  condition: []
+  - type: no_motion
+    platform: device
+    device_id: 258e852d4a0883ebf55cf9604505201f
+    entity_id: binary_sensor.garage_motion_detector
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  condition:
+  - condition: state
+    entity_id: sensor.peloton_luckylamour
+    state: Complete
+    for: 00:05
+  - condition: state
+    entity_id: sensor.peloton_norcaldude
+    state: Complete
+    for: 00:05
   action:
   - domain: light
     entity_id: light.laundry
@@ -80,4 +123,25 @@
     device_id: 0004d76603b248718265167c2941461c
     entity_id: switch.garage_main_lights
     domain: switch
+  mode: single
+- id: '1617751784971'
+  alias: Announce the temperature at 8 AM
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:00:00
+  condition: []
+  action:
+  - service: notify.alexa_media
+    data:
+      title: Good morning
+      message: Good morning! The temperature is {{states('sensor.netatmo_grand_view_ave_module_temperature')}}
+        degrees.
+      data:
+        method: all
+        type: announce
+      target:
+      - media_player.kitchen
+      - media_player.office
+      - media_player.bedroom
   mode: single
